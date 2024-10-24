@@ -1,4 +1,8 @@
 {
-    "use_daily_booster": false,
-    "auto_play_game": false
+  "auto-do-task": "true",
+  "auto-claim-ref": "true",
+  "auto-farm": "true",
+  "auto-buy-daily-booster": "true",
+  "auto-buy-game-booster": "true",
+  "auto-play-game": "true"
 }
