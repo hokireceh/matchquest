@@ -1,8 +1,0 @@
-*.py
-env
-!main.py
-*.log
-*.txt
-!data.txt
-!requirements.txt
-*.json
