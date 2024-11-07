@@ -68,25 +68,34 @@ def claim_task(token, user_id, task_code, proxies=None):
 def process_do_task(token, user_id, proxies=None):
     task_dict = get_task(token=token, user_id=user_id, proxies=proxies)
     for task_type, task_list in task_dict.items():
-        base.log(f"{base.white}Task Group: {base.yellow}{task_type}")
-        for task in task_list:
-            task_code = task["name"]
-            task_name = task["description"]
-            task_status = task["complete"]
-            if task_status:
-                base.log(f"{base.white}{task_name}: {base.green}Completed")
-            else:
-                complete_task_status = complete_task(
-                    token=token, user_id=user_id, task_code=task_code, proxies=proxies
-                )
-                time.sleep(3)
-                claim_task_status = claim_task(
-                    token=token, user_id=user_id, task_code=task_code, proxies=proxies
-                )
-                if claim_task_status:
+        if task_list is not None:
+            base.log(f"{base.white}Task Group: {base.yellow}{task_type}")
+            for task in task_list:
+                task_code = task["name"]
+                task_name = task["description"]
+                task_status = task["complete"]
+                if task_status:
                     base.log(f"{base.white}{task_name}: {base.green}Completed")
                 else:
-                    base.log(f"{base.white}{task_name}: {base.red}Not ready to claim")
+                    complete_task_status = complete_task(
+                        token=token,
+                        user_id=user_id,
+                        task_code=task_code,
+                        proxies=proxies,
+                    )
+                    time.sleep(3)
+                    claim_task_status = claim_task(
+                        token=token,
+                        user_id=user_id,
+                        task_code=task_code,
+                        proxies=proxies,
+                    )
+                    if claim_task_status:
+                        base.log(f"{base.white}{task_name}: {base.green}Completed")
+                    else:
+                        base.log(
+                            f"{base.white}{task_name}: {base.red}Not ready to claim"
+                        )
 
 
 def claim_ref(token, user_id, proxies=None):
