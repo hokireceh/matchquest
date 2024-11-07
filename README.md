@@ -37,6 +37,11 @@ cd matchquest
 pip install hokireceh-claimer
 ```
 
+Linux / VPS
+```
+pip3 install hokireceh-claimer
+```
+
 | Run with Proxy                   | Run without Proxy   |
 | -------------------------------- | ------------------- |
 | `bot-proxy.py` `data-proxy.json` | `bot.py` `data.txt` |
